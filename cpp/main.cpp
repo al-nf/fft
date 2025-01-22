@@ -4,8 +4,6 @@
 #include <cmath>
 using namespace std;
 
-#define PI 3.14159265358979323846
-
 int log2(int N) {
     int i = 0;
     while (N > 1) {
@@ -38,7 +36,7 @@ void transform(vector<complex<double> >& f) {
 
     vector<complex<double> > W(N / 2);
     for (int i = 0; i < N / 2; i++) {
-        W[i] = polar(1.0, -2.0 * PI * i / N);
+        W[i] = polar(1.0, -2.0 * M_PI * i / N);
     }
 
     // FFT
@@ -79,4 +77,3 @@ int main() {
         cout << val << '\n';
     }
 }
-
