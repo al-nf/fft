@@ -56,6 +56,7 @@ void transform(vector<complex<double> >& f) {
     }
 }
 
+// FFTs the function <f>, and scales it with the normalization factor <d>
 void FFT(vector<complex<double> >& f, double d) {
     transform(f);
     for (auto& val : f) {
