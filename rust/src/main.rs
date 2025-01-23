@@ -17,7 +17,10 @@ fn main() {
     }
 }
 
+// Performs a DFT on a function <f> with the normalization factor <d>
 fn fast_fourier_transform(f: &Vec<Complex<f64>>, d: f64) -> Vec<Complex<f64>> {
+    // Calculates the base-2 logarithm of a decimal number <n> to find the number of bits needed to
+    // represent it
     let log2 = |n: i32| -> i32 {
         let mut i = 0;
         let mut k = n;
@@ -28,6 +31,7 @@ fn fast_fourier_transform(f: &Vec<Complex<f64>>, d: f64) -> Vec<Complex<f64>> {
         return i;
     };
 
+    // Bit-reverses the number at index <n> for a DFT of size <k>
     let reverse = |n: i32, k: i32| {
         let mut result: i32 = 0;
         let bits = log2(k);
@@ -40,6 +44,7 @@ fn fast_fourier_transform(f: &Vec<Complex<f64>>, d: f64) -> Vec<Complex<f64>> {
         return result;
     };
 
+    // Cooley-Tukey
     let transform = |f: &Vec<Complex<f64>>| -> Vec<Complex<f64>> {
         let mut out = f.clone();
         let k = f.len();
@@ -73,6 +78,7 @@ fn fast_fourier_transform(f: &Vec<Complex<f64>>, d: f64) -> Vec<Complex<f64>> {
         out
     };
 
+    // Applies the normalization factor <d>
     let mut transformed = transform(f);
     for i in 0..transformed.len() {
         transformed[i] *= d;
